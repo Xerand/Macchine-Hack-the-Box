@@ -33,11 +33,11 @@ Porte: 22,80
 ## Porta 80
 
 Probabilmente non si riesce a visitare la porta http 80 sul browser quindi aggiornare `/etc/hosts con: <IP MACCHINA> artificial.htb`
-![](\images\2025-10-22-23-14-56-image.png)
+![](images\2025-10-22-23-14-56-image.png)
 
 Creare un account e loggarsi, poi scaricare il Dockerfile
 
-![](\images\2025-10-22-23-15-41-image.png)Sfrutteremo questo exploit: https://github.com/Splinter0/tensorflow-rce/blob/main/exploit.py
+![](images\2025-10-22-23-15-41-image.png)Sfrutteremo questo exploit: https://github.com/Splinter0/tensorflow-rce/blob/main/exploit.py
 
 ```python
 import tensorflow as tf
