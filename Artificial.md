@@ -33,7 +33,7 @@ Porte: 22,80
 ## Porta 80
 
 Probabilmente non si riesce a visitare la porta http 80 sul browser quindi aggiornare `/etc/hosts con: <IP MACCHINA> artificial.htb`
-![](C:\Users\andre\AppData\Roaming\marktext\images\2025-10-22-23-14-56-image.png)
+![](images\2025-10-22-23-14-56-image.png)
 
 Creare un account e loggarsi, poi scaricare il Dockerfile
 
