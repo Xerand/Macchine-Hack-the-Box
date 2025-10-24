@@ -38,6 +38,7 @@ Probabilmente non si riesce a visitare la porta http 80 sul browser quindi aggio
 Creare un account e loggarsi, poi scaricare il Dockerfile
 
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/2025-10-22-23-15-41-image.png)
+
 Sfrutteremo questo exploit: https://github.com/Splinter0/tensorflow-rce/blob/main/exploit.py
 
 ```python
