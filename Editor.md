@@ -60,6 +60,7 @@ con il comando
 si cerca **all’interno di tutto il file system** (`/`) i file regolari (`-type f`) con il bit **SUID** impostato (`-perm -4000`)
 si trova
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251009234444.png)
+
 Si cerca un exploit per ndsudo
 ndsudo è vulnerabile all'exploit CVE-2024-32019
 qui troviamo uno script per l'exploit: https://github.com/AzureADTrent/CVE-2024-32019-POC
