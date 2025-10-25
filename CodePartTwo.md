@@ -11,21 +11,21 @@ IP attacante: 10.10.14.14
 
 ## Porte e Servizi
 
-![](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017205234.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017205234.png)
 
 ## Porta 8000
 
-![![[Pasted image 20251017205344.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017205344.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017205344.png)
 
 - Scaricare l'app per analizzarla
 
 - Registrarsi con nome utente e password qualsiasi e accedere
-  ![![[Pasted image 20251017205545.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017205545.png)
+  ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017205545.png)
   
   ## Analisi app
   
   Una volta scaricata e unzippata l'app, nella sua cartella si trova il file **requirements.txt**
-  ![![[Pasted image 20251017210047.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017210047.png)
+  ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017210047.png)
   
   ### exploit js2py 0.74 ( CVE-2024-28397 )
 
@@ -81,22 +81,22 @@ Questo è il payload precedente con inserita la reverse shell sulla porta 4500 (
 Mettersi in ascolto sulla porta 4500 `nc -nlvp 4500`
 Andare sulla dashboard del sito e lanciare `run code` bloccandolo con la **Burpsuite**
 In Burpsuite sostituire il "code" con il payload e fare **farward**
-![![[Pasted image 20251017212338.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017212338.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017212338.png)
 Arriva la shell e siamo dentro.
-![![[Pasted image 20251017212805.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017212805.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017212805.png)
 
 ### User marco
 
 Esaminiamo **passwd** con `cat /etc/passwd` e troviamo lo user marco
-![![[Pasted image 20251017213121.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017213121.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017213121.png)
 Andiamo nella cartella `/tmp/` e scarichiamo [[linpeas]](mettere su un server python nella cartella del nostro PC che lo contiene e scaricarlo nella cartella /tmp/ del computer vittima con wget ).
 Una volta scaricato dargli i permessi di esecuzione e lanciarlo.
 
 Linpeas trova dei db che potrebbero contenere informazioni interessanti
-![![[Pasted image 20251017222826.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017222826.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017222826.png)
 soprattutto il file `users.db`
 Esaminiamolo con `sqlite3`:
-![![[Pasted image 20251017223957.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017223957.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017223957.png)
 Troviamo due hash md5 (soprattutto quello di marco) che possiamo provare a craccare con[[hashcat]]
 `hashcat -m 0 649c9d65a206a75f5abe509fe128bce5 /usr/share/wordlists/rockyou.txt`
 Troviamo la password `sweetangelbabylove`
@@ -106,10 +106,10 @@ Nella cartella `/home/marco` troviamo la userflag nel file `user.txt`
 ## Scalata dei privilegi
 
 Linpeas aveva trovato anche il file `npbackup-cli` che potrebbe essere sfruttato
-![![[Pasted image 20251017230659.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017230659.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017230659.png)
 
 con `sudo -l` vediamo che l'utente marco può lanciare il file npbackup-cli come sudo senza password:
-![![[Pasted image 20251017232022.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017232022.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017232022.png)
 Quindi può essere sfruttato per scalare i privilegi.
 
 ### Script /usr/local/bin/npbackup-cli
@@ -138,9 +138,9 @@ Proviamo a cercare `npbackup` per trovare `__main__`
 Lo troviamo in `/usr/local/lib/python3.8/dist-packages/npbackup`
 
 Se lanciamo `npbackup-cli` vediamo che per funzionare necessita di un file di configurazione:
-![![[Pasted image 20251017233800.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017233800.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017233800.png)
 Lanciando l'help di `npbackup-cli` vediamo che può essere lanciato fornendo l'indirizzo del file di configurazione, che potrebbe essere modificato per lanciare dei comandi con i permessi root
-![![[Pasted image 20251017234158.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017234158.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017234158.png)
 Proviamo a cercare un file di configurazione da modificare:
 `find / -name "*npbackup*conf*" -type f 2>/dev/null`
 Lo troviamo in `/home/marco/npbackup.conf`
