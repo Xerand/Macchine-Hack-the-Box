@@ -89,6 +89,7 @@ Arriva la shell e siamo dentro.
 
 Esaminiamo **passwd** con `cat /etc/passwd` e troviamo lo user marco
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017213121.png)
+
 Andiamo nella cartella `/tmp/` e scarichiamo [[linpeas]](mettere su un server python nella cartella del nostro PC che lo contiene e scaricarlo nella cartella /tmp/ del computer vittima con wget ).
 Una volta scaricato dargli i permessi di esecuzione e lanciarlo.
 
@@ -97,6 +98,7 @@ Linpeas trova dei db che potrebbero contenere informazioni interessanti
 soprattutto il file `users.db`
 Esaminiamolo con `sqlite3`:
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251017223957.png)
+
 Troviamo due hash md5 (soprattutto quello di marco) che possiamo provare a craccare con[[hashcat]]
 `hashcat -m 0 649c9d65a206a75f5abe509fe128bce5 /usr/share/wordlists/rockyou.txt`
 Troviamo la password `sweetangelbabylove`
