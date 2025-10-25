@@ -7,7 +7,7 @@ IP attacante: 10.10.14.245
 
 `sudo nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn 10.129.94.246 -oG porte`
 
-![[Pasted image 20251009220545.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted image 20251009220545.png)
 
 Porte: 22, 80, 8080
 `nmap -sC -sV -p22,80,8080 10.129.94.246 -oN servizi`
