@@ -7,14 +7,14 @@ IP attacante: 10.10.14.245
 
 `sudo nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn 10.129.94.246 -oG porte`
 
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted image 20251009220545.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251009220545.png)
 
 Porte: 22, 80, 8080
 `nmap -sC -sV -p22,80,8080 10.129.94.246 -oN servizi`
 
 ## Porta 8080
 
-![[Pasted image 20251009221030.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251009221030.png)
 
 ## exploit CVE-2025-24893
 
@@ -31,7 +31,7 @@ Riusciamo entrare come utente xwiki
 ## username utente
 
 con `cat /etc/passwd` vediamo l'elenco degli utenti tra cui compare l'utente oliver
-![[Pasted image 20251011101549.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251011101549.png)
 
 ## password utente
 
@@ -48,7 +48,7 @@ Possiamo provare ad entrare in ssh con utente oliver e password theEd1t0rTeam99
 tentiamo un brute force di ssh usando la password trovata e una lista di nomi utente con il comando
 `hydra -t 4 -L /usr/share/seclists/Usernames/Names/malenames-usa-top1000-lower.txt -p "theEd1t0rTeam99" ssh://10.129.94.246`
 Troviamo l'utente oliver
-![[Pasted image 20251009222355.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251009222355.png)
 
 entriamo in ssh con l'utente oliver e la password theEd1t0rTeam99
 nella cartella /home/oliver troviamo il file user.txt che contiene la userflag
@@ -59,7 +59,7 @@ con il comando
 `find / -perm -4000 -type f 2>/dev/null`
 si cerca **all’interno di tutto il file system** (`/`) i file regolari (`-type f`) con il bit **SUID** impostato (`-perm -4000`)
 si trova
-![[Pasted image 20251009234444.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251009234444.png)
 Si cerca un exploit per ndsudo
 ndsudo è vulnerabile all'exploit CVE-2024-32019
 qui troviamo uno script per l'exploit: https://github.com/AzureADTrent/CVE-2024-32019-POC
@@ -87,17 +87,17 @@ Nella cartella /root è presente il file root.txt che contiene la rootflagtrovia
 
 ## Porta 8000
 
-![![[Pasted image 20251017205344.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017205344.png)
+![](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017205344.png)
 
 - Scaricare l'app per analizzarla
 
 - Registrarsi con nome utente e password qualsiasi e accedere
-  ![![[Pasted image 20251017205545.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017205545.png)
+  ![](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017205545.png)
   
   ## Analisi app
   
   Una volta scaricata e unzippata l'app, nella sua cartella si trova il file **requirements.txt**
-  ![![[Pasted image 20251017210047.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017210047.png)
+  ![](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017210047.png)
   
   ### exploit js2py 0.74 ( CVE-2024-28397 )
 
@@ -153,22 +153,22 @@ Questo è il payload precedente con inserita la reverse shell sulla porta 4500 (
 Mettersi in ascolto sulla porta 4500 `nc -nlvp 4500`
 Andare sulla dashboard del sito e lanciare `run code` bloccandolo con la **Burpsuite**
 In Burpsuite sostituire il "code" con il payload e fare **farward**
-![![[Pasted image 20251017212338.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017212338.png)
+![](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017212338.png)
 Arriva la shell e siamo dentro.
-![![[Pasted image 20251017212805.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017212805.png)
+![](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017212805.png)
 
 ### User marco
 
 Esaminiamo **passwd** con `cat /etc/passwd` e troviamo lo user marco
-![![[Pasted image 20251017213121.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017213121.png)
+![](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017213121.png)
 Andiamo nella cartella `/tmp/` e scarichiamo [[linpeas]](mettere su un server python nella cartella del nostro PC che lo contiene e scaricarlo nella cartella /tmp/ del computer vittima con wget ).
 Una volta scaricato dargli i permessi di esecuzione e lanciarlo.
 
 Linpeas trova dei db che potrebbero contenere informazioni interessanti
-![![[Pasted image 20251017222826.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017222826.png)
+![](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017222826.png)
 soprattutto il file `users.db`
 Esaminiamolo con `sqlite3`:
-![![[Pasted image 20251017223957.png]]](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017223957.png)
+![](C:\Users\andre\Desktop\Corso%20Hacking%20Roby7979%20-%20Copia\Pasted%20image%2020251017223957.png)
 Troviamo due hash md5 (soprattutto quello di marco) che possiamo provare a craccare con[[hashcat]]
 `hashcat -m 0 649c9d65a206a75f5abe509fe128bce5 /usr/share/wordlists/rockyou.txt`
 Troviamo la password `sweetangelbabylove`
