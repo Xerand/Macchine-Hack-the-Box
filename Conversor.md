@@ -59,9 +59,9 @@ Nmap done: 1 IP address (1 host up) scanned in 19.61 seconds
 Probabilmente non si riesce a visitare la porta http 80 sul browser quindi aggiornare `/etc/hosts con: <IP MACCHINA> conversor.htb`
 
 Visitiamo il sito sulla porta 80
-![[Pasted image 20251031181717.png]]
+![[https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted image 20251031181717.png]]
 Creiamo un account e accediamo:
-![[Pasted image 20251031181908.png]]
+![[https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted image 20251031181908.png]]
 Scarichiamo il template (download Template->nmap.xslt), poi accediamo alla pagina `about` e scarichiamo il Source Code (Download Source Code->source_code.tar.gz).
 Apriamo il file zippato source_code.tar.gz ed esaminiamolo:
 
