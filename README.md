@@ -2,7 +2,9 @@
 ### Walkthrough macchine Hack the Box
 - Artificial
 - CodePartTwo
+- Conversor
 - Crafty
-- Grandpa
 - Editor
 - Expressway
+- Grandpa
+- Return
