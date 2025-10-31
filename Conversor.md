@@ -208,6 +208,7 @@ Con `needrestart --version` vediamo che la versione è la 3.7 che è soggetta al
 
 1. https://github.com/pentestfunctions/CVE-2024-48990-PoC-Testing
 2. https://github.com/makuga01/CVE-2024-48990-PoC/
+
   Come vediamo dal file dell'exploit `runner.sh` che troviamo nella prima repository, è necessaria la presenza sulla macchina vittima di un compilatore c (gcc) che però non è presente sulla macchina. Dobbiamo quindi compilare sulla nostra macchina il file `lib.c` che troviamo nella seconda repository:
   
   ```
