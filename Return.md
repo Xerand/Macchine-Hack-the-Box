@@ -104,7 +104,7 @@ Proviamo [[enum4linux]]
 `enum4linux -a 10.10.11.108` -> trova sola Domain Name: RETURN
 ## Foothold
 Visitiamo il sito html (http://10.10.11.108:80), pagina `settings`. 
-![[Pasted image 20251028220328.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251028220328.png)
 
 Vediamo cosa succede cliccando su `update` utilizzando [[burpsuite]]. Catturiamo, mandiamo al repeater, cambiamo il parametro `ip=printer.return.local `con `ip=<nostro IP>`, ci mettiamo in ascolto sulla nostra porta `389` (sudo nc -nlvp 389), che è la server port, e poi mandiamo con send 
 -> siamo dentro (è una dashboard amministrativa di una stampante) e vediamo subito una password: 
