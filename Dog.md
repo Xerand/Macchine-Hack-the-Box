@@ -89,10 +89,10 @@ Ma l'unico che termina con @dog.htp, nome della macchina, è `tiffany@dog.htb`
 ## Porta 80 - Sito internet
 
 Entriamo nel sito sulla porta 80 e andiamo alla pagina di login, tra l'altro vediamo che il sito usa `Backdrop CMS`:
-![[Pasted image 20251102114740.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251102114740.png)
 Proviamo accedere con user `tiffany` e password `BackDropJ2024DS2024`. 
 Siamo dentro nella pagina dell'amministratore:
-![[Pasted image 20251102115032.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251102115032.png)
 Nello Status report o nell'Available updates del menu Reports scopriamo che la versione di Backdrop CMS è la `1.27.1`. Questa versione è vulnerabile ad una **remote code execution**:
 https://github.com/rvizx/backdrop-rce
 Seguiamo le istruzioni trovate nella repository dell'exploit per eseguirlo:
