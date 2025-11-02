@@ -1,5 +1,5 @@
 # Macchine Hack-The-Box
-### Walkthrough macchine Hack the Box
+### Writeup macchine Hack the Box
 - Artificial
 - CodePartTwo
 - Conversor
