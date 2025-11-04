@@ -147,7 +147,7 @@ Accediamo alla pagina `Admin/User Manager`, clicchiamo sull'utente `ben` e cambi
 Poi usciamo e rilogghiamo come utente `ben`:
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251104223701.png)
 Se accediamo alla cartella `webProd` troviamo tutti i file php utilizzati dal sito. Possiamo caricare una reverse shell php per ottenere un accesso. Clicchiamo su `Add files` e carichiamo la reverse shell che troviamo in questa repository (file chiamato `reverseshell.php`):
-`https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php`
+https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php
 Inserendo il nostro IP e la nostra porta in ascolto:
 
 ```php
