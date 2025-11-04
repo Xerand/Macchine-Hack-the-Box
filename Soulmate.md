@@ -10,7 +10,7 @@ Probabile che per accedere al sito dal browser occorra inserire in nel file `/et
 
 ### sito http (porta 80)
 
-![[Pasted image 20251104202249.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251104202249.png)
 Nel sito è possibile iscriversi ed accedere alla propria pagina.
 
 ### namp
@@ -129,7 +129,7 @@ ftp                     [Status: 302, Size: 0, Words: 1, Lines: 1, Duration: 34m
 
 Probabile che per accedere al sito dal browser occorra inserire in nel file `/etc/hosts`:
 `10.10.11.86 ftp.soulmate.htb`
-![[Pasted image 20251104203751.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251104203751.png)
 La pagina ospita un server `Crush FTP` 
 **Crush FTP** è un **server FTP (File Transfer Protocol)** avanzato, scritto in **Java**, che supporta **molteplici protocolli di trasferimento file**, non solo FTP tradizionale. È usato per gestire trasferimenti di file sicuri e automatizzati tra server e client.
 Se ispezioniamo il codice sorgente della pagina troviamo la versione di Crush FTP:
@@ -141,11 +141,11 @@ Una volta scaricato il file python dell'exploit proviamo a lanciarlo con il coma
 `python3 cve-2025-31161.py --target_host ftp.soulmate.htb --port 80 --target_user xerand --new_user xerand2 --password 1234`
 che creerà un nuovo utente con permessi da amministratore (user: xerand2, password: 1234). 
 Ora possiamo accedere come amministratori:
-![[Pasted image 20251104222952.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251104222952.png)
 Accediamo alla pagina `Admin/User Manager`, clicchiamo sull'utente `ben` e cambiamo la sua password (123456) e salviamo.
-![[Pasted image 20251104223411.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251104223411.png)
 Poi usciamo e rilogghiamo come utente `ben`:
-![[Pasted image 20251104223701.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251104223701.png)
 Se accediamo alla cartella `webProd` troviamo tutti i file php utilizzati dal sito. Possiamo caricare una reverse shell php per ottenere un accesso. Clicchiamo su `Add files` e carichiamo la reverse shell che troviamo in questa repository (file chiamato `reverseshell.php`):
 `https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php`
 Inserendo il nostro IP e la nostra porta in ascolto:
