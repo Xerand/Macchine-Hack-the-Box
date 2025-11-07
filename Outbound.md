@@ -11,7 +11,7 @@ Password: LhKL1o9Nm3X2
 ## Recon
 `sudo nmap -p- --open -sS --min-rate 5000 -n -Pn 10.10.11.77`
 ```
-6Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-11-07 18:41 CET
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-11-07 18:41 CET
 Nmap scan report for 10.10.11.77
 Host is up (1.5s latency).
 Not shown: 43832 closed tcp ports (reset), 21701 filtered tcp ports (no-response)
@@ -49,9 +49,9 @@ Nmap done: 1 IP address (1 host up) scanned in 11.85 seconds
 ## Sito html (Porta 80)
 Per accedere agevolmente al sito occorre inserire nel file `/etc/hosts` questo riderimento:
 `10.10.11.77 outbound.htb mail.outbound.htb`
-![[Pasted image 20251107185049.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251107185049.png)
 Accediamo con le credenziali fornite (Username: tyler - Password: LhKL1o9Nm3X2) e cliccando su `"?"` vediamo che si tratta della versione **1.6.10** del client **Roundcube**:
-![[Pasted image 20251107185401.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251107185401.png)
 ## Foothold
 La versione 1.6.10 di Roundcube è vulnerabile all'exploit `CVE-2025-49113`:
 https://github.com/hakaioffsec/CVE-2025-49113-exploit
@@ -132,7 +132,7 @@ changed: 2025-11-07 19:14:23
    vars: bGFuZ3VhZ2V8czo1OiJlbl9VUyI7aW1hcF9uYW1lc3BhY2V8YTo0OntzOjg6InBlcnNvbmFsIjthOjE6e2k6MDthOjI6e2k6MDtzOjA6IiI7aToxO3M6MToiLyI7fX1zOjU6Im90aGVyIjtOO3M6Njoic2hhcmVkIjtOO3M6MTA6InByZWZpeF9vdXQiO3M6MDoiIjt9aW1hcF9kZWxpbWl0ZXJ8czoxOiIvIjtpbWFwX2xpc3RfY29uZnxhOjI6e2k6MDtOO2k6MTthOjA6e319dXNlcl9pZHxpOjM7dXNlcm5hbWV8czo1OiJ0eWxlciI7c3RvcmFnZV9ob3N0fHM6OToibG9jYWxob3N0IjtzdG9yYWdlX3BvcnR8aToxNDM7c3RvcmFnZV9zc2x8YjowO3Bhc3N3b3JkfHM6MzI6Imo3MEJHTTJWRFJjRGN6b3ZZRHJYZlk3MmVGeGt4ck04Ijtsb2dpbl90aW1lfGk6MTc2MjU0Mjg2Mzt0aW1lem9uZXxzOjE3OiJBbWVyaWNhL1Nhb19QYXVsbyI7U1RPUkFHRV9TUEVDSUFMLVVTRXxiOjE7YXV0aF9zZWNyZXR8czoyNjoielA0WnBYcjZuRmt5c1VjUW9jQW5KTGhyMVIiO3JlcXVlc3RfdG9rZW58czozMjoiRXJDa1FqdkNWZ2VncHk2djlLV0oxZDY0WGU2VmdlbHoiOw==
 ```
 Utilizzando il sito **CyberChef** (https://gchq.github.io/CyberChef/) decodificando da **Base64**
-![[Pasted image 20251107203207.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251107203207.png)
 Troviamo:
 ```
 username|s:5:"jacob";
@@ -146,17 +146,17 @@ password|s:32:"j70BGM2VDRcDczovYDrXfY72eFxkxrM8";
 ### Utente jacob
 Sempre con CyberChef tentiamo di decodificare la password:
 - Decodifichiamo `L7Rv00A8TuwJAr67kITxxcSgnIk25Am/` da Base64 e trasformiamola in esadecimale:
-![[Pasted image 20251107214818.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251107214818.png)
 Otteniamo: `2f b4 6f d3 40 3c 4e ec 09 02 be bb 90 84 f1 c5 c4 a0 9c 89 36 e4 09 bf`
 - Poi decrittiamo con **Triple DES Decrypt** con i seguenti parametri
 		- **Key**:  `rcmail-!24ByteDESkey*Str` (UTF8)
 		- **IV**: `2f b4 6f d3 40 3c 4e ec` (HEX) - primi 8 bit della password in esadecimale
 		- **Input**: `09 02 be bb 90 84 f1 c5 c4 a0 9c 89 36 e4 09 bf` (HEX) - successivi 16 bit della password in esadecimale
-![[Pasted image 20251107215310.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251107215310.png)
 Otteniamo la password `595mO8DmwGeD` dell'utente `jacob`
 
 Entriamo nella casella di jacob dal sito  con le credenziali trovate, nella inbox troviamo una mail che comunica una nuova password:
-![[Pasted image 20251107220849.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251107220849.png)
 Password: `gY4Wr3a1evp4`
 
 Questa informazione possiamo ottenerla anche diventando l'utente jacob nel sistema con `su jacob` + password: `595mO8DmwGeD`, andando nella cartella `/home/jacob/mail/INBOX` e aprendo il file `jacob` che contiene le mail presenti nella inbox.
