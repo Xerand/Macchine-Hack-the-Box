@@ -149,8 +149,11 @@ Sempre con CyberChef tentiamo di decodificare la password:
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251107214818.png)
 Otteniamo: `2f b4 6f d3 40 3c 4e ec 09 02 be bb 90 84 f1 c5 c4 a0 9c 89 36 e4 09 bf`
 - Poi decrittiamo con **Triple DES Decrypt** con i seguenti parametri
+  
 		- **Key**:  `rcmail-!24ByteDESkey*Str` (UTF8)
+  
 		- **IV**: `2f b4 6f d3 40 3c 4e ec` (HEX) - primi 8 bit della password in esadecimale
+  
 		- **Input**: `09 02 be bb 90 84 f1 c5 c4 a0 9c 89 36 e4 09 bf` (HEX) - successivi 16 bit della password in esadecimale
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251107215310.png)
 Otteniamo la password `595mO8DmwGeD` dell'utente `jacob`
