@@ -164,7 +164,7 @@ Password: `gY4Wr3a1evp4`
 
 Questa informazione possiamo ottenerla anche diventando l'utente jacob nel sistema con `su jacob` + password: `595mO8DmwGeD`, andando nella cartella `/home/jacob/mail/INBOX` e aprendo il file `jacob` che contiene le mail presenti nella inbox.
 ## ssh (porta 22)
-Ora con le credenziali di jacob (username: `jacob` - password: `gY4Wr3a1evp4` possiamo accedere al servizio ssh:
+Ora con le credenziali di jacob (username: `jacob` - password: `gY4Wr3a1evp4`) possiamo accedere al servizio ssh:
 `ssh jacob@outbound.htb`
 Nella cartella `/home/jacob` troviamo il file `user.txt` con la userflag.
 ## Scalata dei privilegi
