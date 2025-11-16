@@ -122,7 +122,7 @@ OS and Service detection performed. Please report any incorrect results at https
 Nmap done: 1 IP address (1 host up) scanned in 97.01 seconds
 ```
 ## Sito http (porta 8000)
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251115155315.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251115155315.png)
 ...
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251115160006.png)
 Clicchiamo su `Report Bug`:
