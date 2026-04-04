@@ -176,7 +176,7 @@ Vengono trovati due sottodomini che si possono visitare:
 Vanno inseriti nel file `/etc/host`
 `10.129.14.7   kobold.htb mcp.kobold.htb bin.kobold.htb`
 ## mcp.kobold.htb
-![[Pasted image 20260404144409.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted image 20260404144409.png)
 
 Si tratta del servizio **MCPjam versione 1.4.2**
 ![[Pasted image 20260404144522.png]]
