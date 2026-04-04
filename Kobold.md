@@ -1,4 +1,4 @@
-Kobold
+# Kobold
 
 IP vittima: 10.129.14.7
 IP attaccante: 10.10.15.219
