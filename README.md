@@ -7,8 +7,10 @@
 - Dog
 - Editor
 - Expressway
+- Facts
 - Grandpa
 - Imagery
+- Kobold
 - Outbound
 - Return
 - Soulmate
