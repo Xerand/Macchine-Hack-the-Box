@@ -167,7 +167,9 @@ Per analizzare il servizio usiamo [[mc]]che possiamo scaricare da qui:
 `wget https://dl.min.io/client/mc/release/linux-amd64/mc`
 Poi diamo i permessi con `chmod +x mc`
 Eseguiamo questi comandi per esplorare il servizio utilizzando le credenziali Aws s3 access key e secret key:
-```./mc alias set factsminio http://10.129.244.96:54321 AKIA573B3E4EED8AD50F M7UYce7zrtgzavSqSLtNxGjE3HvmDK9cgfIMEsEV --api S3v4```
+```
+./mc alias set factsminio http://10.129.244.96:54321 AKIA573B3E4EED8AD50F M7UYce7zrtgzavSqSLtNxGjE3HvmDK9cgfIMEsEV --api S3v4
+```
 ```
 ./mc ls factsminio/
 [2025-09-11 14:06:52 CEST]     0B internal/
