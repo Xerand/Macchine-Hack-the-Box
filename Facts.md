@@ -136,9 +136,9 @@ Starting gobuster in directory enumeration mode
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260410212447.png)
 L'analisi del sito non porta a nulla.
 #### http://facts.htb/admin/login
-![[Pasted image 20260410212740.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260410212740.png)
 La directory trovata con [[gobuster]]è un login. Creiamo un account e loggiamo con le credenziali create (user: hacker - password: hacker).
-![[Pasted image 20260410213256.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260410213256.png)
 Il servizio è **Camaleon CMS** versione **2.9.0** ed è soggetta all'exploit **CVE-2025-2304**
 ## CVE-2025-2304
 Il **CVE-2025-2304** è una vulnerabilità di **privilege escalation** in **Camaleon CMS** (versioni **prima della 2.9.1**). È causata da un problema di **mass assignment**: il server accetta parametri che non dovrebbe accettare. Questo può permettere a un utente autenticato con pochi permessi di **assegnarsi privilegi da amministratore**. La gravità riportata è **critica**. La mitigazione è **aggiornare alla 2.9.1 o successiva** e controllare eventuali modifiche sospette ai ruoli utente.
@@ -162,7 +162,7 @@ Questo l'exploit: https://github.com/whiteov3rflow/CVE-2025-2304-POC
 Dopo aver lanciato l'exploit con `python3 exploit.py http://facts.htb hacker hacker` occorre sloggare e riloggare diventando amministratore.
 ## Aws s3
 Nella sezione Settings/General Site/Filesystem Settings troviamo le credenziali Aws s3 access key e secret key che possiamo usare per analizzare il servizio
-![[Pasted image 20260410220133.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260410220133.png)
 Per analizzare il servizio usiamo [[mc]]che possiamo scaricare da qui:
 `wget https://dl.min.io/client/mc/release/linux-amd64/mc`
 Poi diamo i permessi con `chmod +x mc`
