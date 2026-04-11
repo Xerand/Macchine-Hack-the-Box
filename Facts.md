@@ -133,7 +133,7 @@ Starting gobuster in directory enumeration mode
 ```
 [[gobuster]]trova una directori **admin**
 ## Porta 80
-![[Pasted image 20260410212447.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260410212447.png)
 L'analisi del sito non porta a nulla.
 #### http://facts.htb/admin/login
 ![[Pasted image 20260410212740.png]]
