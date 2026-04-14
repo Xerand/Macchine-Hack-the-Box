@@ -97,7 +97,7 @@ ftp                     [Status: 200, Size: 678, Words: 44, Lines: 10, Duration:
 :: Progress: [19966/19966] :: Job [1/1] :: 574 req/sec :: Duration: [0:00:34] :: Errors: 0 ::
 ```
 ffuf trova il sottodominio **ftp.wingdata.htb** accessibile anche cliccando sul tato **Client Portal** della home page del sito:
-![[Pasted image 20260414185409.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260414185409.png)
 ## CVE-2025-47812
 Sul sottodominio **ftp.wingdata.htb** è presente il servizio **Wing FTP Server v7.4.3** vulnerabile al CVE-2025-47812
 POC: https://github.com/4m3rr0r/CVE-2025-47812-poc
