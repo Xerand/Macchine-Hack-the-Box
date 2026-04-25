@@ -55,11 +55,11 @@ Nmap done: 1 IP address (1 host up) scanned in 10.97 seconds
 Sono aperte le porte 22 (ssh) e 80 (html). Nessun'altra informazione rilevante
 ## porta 80
 Questo il sito:
-![[Pasted image 20260424220748.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260424220748.png)
 Clicchiamo su **Staff Login**:
-![[Pasted image 20260424220848.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260424220848.png)
 Proviamo con Username **admin** password **admin** e riusciamo ad entrare!!:
-![[Pasted image 20260424221019.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260424221019.png)
 Si tratta del servizio **ZoneMinder** nella versione **1.37.63** vulnerabile a **CVE-2024-51482**
 ## CVE-2024-51482 — SQL Injection
 In `web/ajax/event.php`, il parametro `tid` (tag ID) viene inserito direttamente in una query SQL senza sanitizzazione, rendendolo vulnerabile a una SQL Injection boolean-based. [GitHub](https://github.com/ZoneMinder/zoneminder/security/advisories/GHSA-qm8h-3xvf-m7j3)
@@ -70,7 +70,7 @@ http://cctv.htb/zm/index.php?view=request&request=event&action=removetag&tid=1
 #### Prerequisiti
 - **Accesso autenticato** (che hai già come admin ✅)
 - Cookie di sessione `ZMSESSID`. Questo lo si recupera nel browser con `Dev Tools (F12) -> Storage -> Cookies -> ZMSESSID`
-![[Pasted image 20260424222422.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260424222422.png)
 Il cookie è **bf1poerckejd5adfrj1kltl62u**
 #### Enumerazione database
 ```
