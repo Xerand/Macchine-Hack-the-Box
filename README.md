@@ -14,5 +14,6 @@
 - Kobold
 - Outbound
 - Return
+- Silentium
 - Soulmate
 - Wingdata
