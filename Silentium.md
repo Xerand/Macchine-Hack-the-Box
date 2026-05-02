@@ -160,7 +160,7 @@ Dall'analisi del codice html della pagina scopriamo che si tratta del servizio *
 - Gli ambienti di staging spesso hanno **credenziali deboli o nessuna autenticazione**
 - Può esporre **API keys, flussi interni, connessioni a DB**
 
-Con `curl [http://staging.silentium.htb/api/v1/version](http://staging.silentium.htb/api/v1/version)` otteniamo la versione:
+Con `curl http://staging.silentium.htb/api/v1/version` otteniamo la versione:
 `{"version":"3.0.5"}%`
 
 La versione **3.0.5** di **Flowise** è vulnerabile agli exploit CVE-2025-58434 e CVE-2025-59528.
