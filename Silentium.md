@@ -66,7 +66,7 @@ Hostname: silentium.htb
 - Il titolo della pagina è "Silentium | Institutional Capital & Lending Solutions" → sito finanziario/istituzionale
 ## Sito html: http://silentium.htb
 Sul sito troviamo tre nomi:
-![[Pasted image 20260501173536.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260501173536.png)
 Dal codice html della pagina troviamo:
 - **Asset statici:** `/assets/styles.css` e `/assets/app.js` — da esaminare, specialmente `app.js`
 - **Nessun form** visibile, nessun login, nessun link a sottodomini
@@ -152,7 +152,7 @@ staging                 [Status: 200, Size: 3142, Words: 789, Lines: 70, Duratio
 Troviamo il sottodomino **staging**
 ## Sottodominio staging
 Visitiamo http://staging.silentium.htb/signin
-![[Pasted image 20260501172814.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260501172814.png)
 Dall'analisi del codice html della pagina scopriamo che si tratta del servizio **Flowise**
 🎯 **Flowise** è una piattaforma open source per costruire AI agents — e su un ambiente di staging può essere una miniera d'oro.
 
@@ -172,12 +172,12 @@ Per ottenere il token:
 - Apriamo i **DevTools** di Firefox (F12) e scegliamo **Network**.
 - Clicchiamo su **Send Reset Password Instructions**.
 - Possiamo trovare il token nella risposta dal server:
-![[Pasted image 20260501175859.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260501175859.png)
 Per cambiare la password:
 - dopo aver ottenuto il token cliccare su **Change your password here**
 - Compilare il form inserendo la mail ben@silentium.htb, il token ottenuto nel campo reset token e la nuova password rispettando le caratteristiche che deve avere.
 - Cliccare su **Update Password**
-![[Pasted image 20260502104012.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260502104012.png)
 Ora possiamo accedere al servizio con la mail ben@silentium.htb e la password scelta.
 ### CVE-2025-59528 — Authenticated Remote Code Execution
 Nella versione 3.0.5, Flowise è vulnerabile all'esecuzione di codice da remoto. Il nodo CustomMCP consente agli utenti di inserire le impostazioni di configurazione per la connessione a un server MCP esterno. Questo nodo analizza la stringa mcpServerConfig fornita dall'utente per creare la configurazione del server MCP. Tuttavia, durante questo processo, esegue codice JavaScript senza alcuna verifica di sicurezza. Nello specifico, all'interno della funzione convertToValidJSONString, l'input dell'utente viene passato direttamente al costruttore Function(), che valuta ed esegue l'input come codice JavaScript. Poiché questo codice viene eseguito con privilegi di runtime completi di Node.js, può accedere a moduli pericolosi come child_process e fs. 
@@ -186,7 +186,7 @@ Per sfruttare questo exploit e ottenere una reverse shell possiamo usare questo 
 https://github.com/TYehan/CVE-2025-58434-59528
 passaggi:
 - otteniamo una api key nella pagina del servizio a cui abbiamo avuto accesso con ben@silentium.htb e la password che abbiamo cambiato:
-![[Pasted image 20260502105702.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260502105702.png)
 - ci mettiamo in ascolto sulla porta 4444 (`nc -lvnp 4444`)
 - lanciamo il comando:
 ```
@@ -249,7 +249,7 @@ Non riusciamo a vedere i processi ma utilizzando [[curl]]possiamo vedere gli hea
 Creiamo un **port forward** SSH dalla nostra macchina per accedere a Gogs dal browser:
 `ssh -L 3001:localhost:3001 ben@silentium.htb` + password **`r04D!!_R4ge`** 
 Poi possiamo accedere al servizio dal nostro browser con `http://localhost:3001/`
-![[Pasted image 20260502123934.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260502123934.png)
 Gog è vulnerabile all'exploit CVE-2025-8110
 ### CVE-2025-8110 — RCE Exploit
 Questa vulnerabilità consente l'esecuzione di codice remoto (RCE) sfruttando l'API PutContents, che non verifica se un percorso di file sia un collegamento simbolico. Sovrascrivendo il file interno .git/config tramite un collegamento simbolico, è possibile iniettare un comando ssh maligno per attivare una shell inversa.
@@ -260,7 +260,7 @@ Passaggi:
 - creiamo un nuovo utente e accediamo al servizio (utilizzato username **xerand**, password **xerand73**)
 - accediamo a **Your settings** cliccando sul quadrato in alto a destra, poi **Applications** e **Generate New Token**
 - Generiamo un nuovo token dandogli un nome
-![[Pasted image 20260502125329.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260502125329.png)
 Token generato **4f0b4004431137cef44450862ee81f9ff81f5323**
 - Dopo aver scaricato l'exploit e installato le dipendenze mettiamoci in ascolto sulla porta 5555 con `nc -lvnp 5555`
 - Lanciamo l'exploit con il seguente comando utilizzando username e password dell'account creato e il token generato:
