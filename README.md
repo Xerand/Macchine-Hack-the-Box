@@ -11,6 +11,7 @@
 - Facts
 - Grandpa
 - Imagery
+- Interpreter
 - Kobold
 - Outbound
 - Return
