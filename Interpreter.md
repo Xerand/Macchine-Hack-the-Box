@@ -226,7 +226,7 @@ echo "u/+LBBOUnadiyFBsMOoIDPLbUR0rk59kEkPU17itdrVWA/kLMt3w+w==" | base64 -d | wc
 
 Dobbiamo cercare come Mirth Connect gestisce le password. Essendo open source, la risposta è nella documentazione: dalla versione 4.4.0 in poi Mirth Connect usa **PBKDF2WithHmacSHA256** con 600.000 iterazioni, dove i primi **8 byte sono il salt** e i restanti **32 byte sono l'hash derivato** (8 + 32 = 40 ✓).
 
-![[Pasted image 20260516142816.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260516142816.png)
 
 Verifichiamo estraendo salt e hash e costruiamo la stringa per hashcat con questo one-liner python:
 ``` python
