@@ -1,4 +1,4 @@
-# Macchina Editor
+# Editor
 
 IP vittima: 10.129.94.246 
 IP attacante: 10.10.14.245
