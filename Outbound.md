@@ -1,4 +1,4 @@
-# Macchina Outbound
+# Outbound
 
 IP vittima: 10.10.14.27 
 IP attaccante: 10.10.11.77
