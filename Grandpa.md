@@ -1,4 +1,4 @@
-# Macchina Grandpa
+# Grandpa
 
 ip vittima: 10.129.93.14
 ip attacante: 10.10.14.245
