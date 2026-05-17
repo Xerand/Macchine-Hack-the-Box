@@ -16,5 +16,6 @@
 - Outbound
 - Return
 - Silentium
+- Smarthire
 - Soulmate
 - Wingdata
