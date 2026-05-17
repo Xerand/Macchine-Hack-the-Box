@@ -1,4 +1,4 @@
-# Macchina Crafty
+# Crafty
 
 IP vittima: 10.129.230.193 IP attacante: 10.10.14.245
 
