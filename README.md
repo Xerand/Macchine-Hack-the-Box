@@ -14,6 +14,7 @@
 - Interpreter
 - Kobold
 - Outbound
+- Reactor
 - Return
 - Silentium
 - Smarthire
