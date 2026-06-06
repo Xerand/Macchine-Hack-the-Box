@@ -275,7 +275,7 @@ interagire con il PLC che gestisce il reattore per attivare la "finestra di manu
 #### File PDF - Immagine PNG
 Nella directory `/home/operator` è presente il file **Operator Control & Safety Guide.pdf** e l'immagine **control systems diagram.png**. Le scarichiamo sulla nostra macchina.
 L'immagine ci dice che il reattore è controllato attraverso l'host locale **127.0.0.1:4840/helix/**
-![[Pasted image 20260606165650.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260606165650.png)
 Il file pdf è bloccato da password (cifrato con AES-256). Crackiamo la password con [[johntheripper]]
 ``` bash
 pdf2john "Operator Control & Safety Guide.pdf" > pdf_hash.txt
