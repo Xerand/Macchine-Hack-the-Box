@@ -3,6 +3,7 @@
 - Artificial
 - CCTV
 - CodePartTwo
+- Connected
 - Conversor
 - Crafty
 - Dog
