@@ -118,6 +118,8 @@ Quindi i crawler sono invitati a non indicizzare il sito.
 ## freePBX - CVE-2025-57819
 Sulle porte 80 e 443 è presente un'istanza di **FreePBX** in versione **16.0.40.7**
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260610193423.png)
+
+
 Si può trovare anche con il comando:
 `curl -s -L http://connected.htb/ | head -n 40`
 ``` html
@@ -248,8 +250,10 @@ Linpeas trova:
 `╔══════════╣ Check for vulnerable cron jobs`
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260610211236.png)
 
+
 e
 ![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260610212844.png)
+
 
 Queste righe erano praticamente il cuore della privilege escalation:
 ```
