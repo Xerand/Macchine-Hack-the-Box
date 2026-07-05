@@ -330,7 +330,7 @@ Ogni servizio ha consegnato la chiave del successivo. Il mail stack, che allo sc
 
 Accediamo al servizio presente in `http://support_001.enigma.htb` con username `admin` e password `Ne3s4rtars78s`
 Troviamo il servizio `OpenSTAManager` versione `2.9.8`
-![[Pasted image 20260704162012.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020260704162012.png)
 ### Fingerprint dell'applicazione: OpenSTAManager 2.9.8
 
 Il servizio su `support_001.enigma.htb` è **OpenSTAManager 2.9.8**, un gestionale open-source italiano (fatturazione, assistenza, magazzino). Accesso già ottenuto come `admin:Ne3s4rtars78s`, quindi partiamo _autenticati_ — condizione che sblocca il grosso delle vulnerabilità note su questa versione.
