@@ -6,6 +6,7 @@
 - Connected
 - Conversor
 - Crafty
+- Devhub
 - Dog
 - Editor
 - Enigma
