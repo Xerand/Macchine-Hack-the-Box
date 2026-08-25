@@ -3,6 +3,7 @@
 - Artificial
 - CCTV
 - CodePartTwo
+- Cohort
 - Connected
 - Conversor
 - Crafty
