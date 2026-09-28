@@ -18,6 +18,7 @@
 - Imagery
 - Interpreter
 - Kobold
+- Management
 - Outbound
 - Paperwork
 - Reactor
