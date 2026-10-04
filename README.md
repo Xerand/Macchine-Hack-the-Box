@@ -1,6 +1,7 @@
 # Macchine Hack-The-Box
 ### Writeup macchine Hack the Box
 - Artificial
+- Bedside
 - CCTV
 - CodePartTwo
 - Cohort
