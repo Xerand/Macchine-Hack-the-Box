@@ -316,7 +316,7 @@ xfreerdp3 /v:10.129.91.70 /u:KioskUser /p:'K!0sk2026#' /sec:rdp
 
 **Risultato:** la connessione riesce, ma al posto del normale desktop compare l'applicazione a schermo intero **HTB Airways Kiosk**.
 
-![[Pasted image 20261024165815.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020261024165815.png)
 
 Una sessione **kiosk** limita l'utente a una particolare applicazione: avere credenziali RDP non implica poter avviare subito `cmd.exe` o utilizzare normalmente il desktop.
 ### 4.2 Dal DeviceHub al messaggio di errore
@@ -331,7 +331,7 @@ Una sessione **kiosk** limita l'utente a una particolare applicazione: avere cre
 
 La finestra mostra:
 
-![[Pasted image 20261025211917.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020261025211917.png)
 ### 4.3 Dal collegamento di supporto a CMD
 
 La finestra d'errore contiene un **collegamento HTTPS esterno**. Facendo clic si apre il browser Windows, uscendo dall'interfaccia strettamente controllata del kiosk.
