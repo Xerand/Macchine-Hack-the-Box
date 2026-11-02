@@ -10,6 +10,7 @@
 - Crafty
 - Devhub
 - Dog
+- Dutybound
 - Editor
 - Enigma
 - Expressway
