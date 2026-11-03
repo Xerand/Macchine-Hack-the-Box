@@ -11,6 +11,7 @@
 - Devhub
 - Dog
 - Dutybound
+- Dutybound (con Burpsuite)
 - Editor
 - Enigma
 - Expressway
