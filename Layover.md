@@ -304,7 +304,7 @@ Ora la workstation è collegata contemporaneamente a due reti:
 
 Dopo la connessione Wi-Fi viene visualizzato il portale passeggeri di HTB International Airport.
 
-![[Pasted image 20261117215745.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020261117215745.png)
 
 All'interno della pagina compare un avviso che segnala la presenza del servizio:
 
@@ -316,7 +316,7 @@ Apriamo l'indirizzo col browser.
 
 La pagina presenta il modulo di autenticazione di **HTB Airways Miles**.
 
-![[Pasted image 20261117220151.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020261117220151.png)
 
 Proviamo le credenziali iniziali:
 
@@ -394,7 +394,7 @@ portal.international.htb → 10.13.37.10
 
 Il portale si trova nella rete `10.13.37.0/24`, alla quale siamo collegati attraverso `wlan2`.
 
-![[Pasted image 20261117223637.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020261117223637.png)
 ## 6. Configurazione della modalità monitor
 
 Ora vogliamo analizzare anche il traffico degli altri dispositivi collegati a HTB International WiFi.
@@ -567,7 +567,7 @@ password: Fl1ghtDeck2026!
 
 Abbiamo recuperato le credenziali di un altro utente del portale.
 
-![[Pasted image 20261117225247.png]]
+![](https://github.com/Xerand/Macchine-Hack-the-Box/blob/main/images/Pasted%20image%2020261117225247.png)
 ### 8.2 Visualizziamo l'intera conversazione HTTP
 
 Un metodo ancora più semplice consiste nell'utilizzare la funzionalità **Follow TCP Stream** di Wireshark.
